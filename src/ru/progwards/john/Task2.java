@@ -64,7 +64,7 @@ public class Task2 {
         //addition(528,387);
         //multiplication(124,87);
         //multiplication(1528,3);
-        System.out.println(fractional(1.53));
+        // System.out.println(fractional(1.53));
     Integer int1 =5;
     Double doub1 = 25.0;
     Integer int2 = int1 + doub1.intValue();
