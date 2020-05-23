@@ -6,7 +6,7 @@ public class ReverseDigits {
         int idiv = number%100;
         int i2 = idiv/10;
         int i3 = idiv%10;
-    return i*100 + i2*10 + i3;
+    return i3*100 + i2*10 + i;
     }
 
     public static void main(String[] args) {
@@ -16,6 +16,9 @@ public class ReverseDigits {
         System.out.println("z1 = " + z1);
         z1 = ReverseDigits.reverseDigits(199);
         System.out.println("z1 = " + z1);
+        z1 = ReverseDigits.reverseDigits(784);
+        System.out.println("z1 = " + z1);
+
 
     }
 }
