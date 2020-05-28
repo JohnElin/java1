@@ -33,8 +33,9 @@ public class CyclesGoldenFibo {
     public static boolean isGoldenTriangle(int a, int b, int c) {
         if (!TriangleInfo.isTriangle(a, b, c)) return false;
         if (!TriangleInfo.isIsoscelesTriangle(a, b, c)) return false;
-        if (b == 34 && c == 55) return false;
-        double res = (double) TriangleSimpleInfo.maxSide(a, b, c) / (double) TriangleSimpleInfo.minSide(a, b, c);
+        int min = TriangleSimpleInfo.minSide(a, b, c);
+        if (min == a && min == b || min == a && min == c || min == c && min == b) return false; // Проверка, что ребро длиннее основания
+        double res = (double) TriangleSimpleInfo.maxSide(a, b, c) / (double) min;
         return 1.61703 < res && 1.61903 > res;
     }
 
