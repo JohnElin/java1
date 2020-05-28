@@ -15,14 +15,14 @@ public class AccuracyDoubleFloat {
     public static double calculateAccuracy(double radius){
         Double R = radius;
         Float v = volumeBallFloat((float) radius);
-        Double Diff = volumeBallDouble(R)- (double) v;
+        Double Diff = volumeBallDouble(R)-  v;
         return Diff;
 
     }
 
     public static void main(String[] args) {
         Double res =  calculateAccuracy(6371.2);
-
+        System.out.println("res = " + res);
     }
 }
 
