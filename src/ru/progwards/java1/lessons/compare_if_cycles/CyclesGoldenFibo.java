@@ -6,13 +6,15 @@ public class CyclesGoldenFibo {
 //        String digi = Integer.toString(digit);
 //        return numb.contains(digi);
         int b1 = number;
-        while ( b1 >= 0 ) {
+        do {
             if ( b1 % 10 == digit ) return true;
             b1 /= 10;
+        } while ( b1 > 0 );
+        return false;
 
         }
-        return false;
-    }
+
+
     public static int fiboNumber(int n){
         int res = 0;
         int res1 = 1;
@@ -40,7 +42,6 @@ public class CyclesGoldenFibo {
         for (int i = 1; i < 101;i++) for(int i1 = 1; i1 < 101; i1++){
          if (isGoldenTriangle(i,i,i1)) System.out.println(i + " " + i1);
 
-
         }
     }
-}
+
