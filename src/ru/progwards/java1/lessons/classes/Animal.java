@@ -34,14 +34,14 @@ public class Animal {
         return wg;
     }
     public String toStringFull(){
-        return toString() + " <" + calculateFoodWeight() + ">";
+        return toString() + " " + calculateFoodWeight() + "";
     }
     @Override
     public String toString() {
-        return "I am <"+ getKind() + ">, eat <" + getFoodKind() +">";
+        return "I am "+ getKind() + ", eat " + getFoodKind();
     }
 
     public static void main(String[] args) {
-        
+
     }
 }
