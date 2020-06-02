@@ -24,7 +24,7 @@ public class ConverseBot extends ProgwardsTelegramBot {
 
         ProgwardsTelegramBot bot = new ProgwardsTelegramBot();
         bot.username = "Converse24bot";
-        bot.token = "1254656732:AAF06x-48nm7RkE-pgbFkP66LsYreYanP8g";
+        bot.token = "";
 
         bot.addTags("Пицца гавайская", "гавайск, пицц, ананас, куриц");
         bot.addTags("Пицца маргарита", "маргарит, пицц, моцарелла, сыр, кетчуп, помидор");
