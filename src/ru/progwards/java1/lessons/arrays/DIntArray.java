@@ -4,7 +4,11 @@ import java.util.Arrays;
 
 public class DIntArray {
     private int[] i = new int[1];
+    public DIntArray(){
+
+    }
     public DIntArray(int [] i){
+        this();
         this.i = i;
     }
 
