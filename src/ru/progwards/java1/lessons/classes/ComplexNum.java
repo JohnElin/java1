@@ -11,27 +11,6 @@ public class ComplexNum {
     public ComplexNum() {
     }
 
-    public class ComplexNum {
-        int a;
-        int b;
-        int c;
-        int d;
-
-        public ComplexNum(int a, int b, int c, int d){
-            this.a = a;
-            this.b = b;
-            this.c = c;
-            this.d = d;
-        }
-        public ComplexNum(int a, int b){
-            this.a = a;
-            this.b = b;
-        }
-        public ComplexNum() {
-        }
-
-
-
 
     public String toString(){
         return a + "+" + b + "i";
