@@ -2,6 +2,33 @@ package ru.progwards.java1.lessons.test;
 
 import javax.swing.*;
 
+
+class Person {
+    String name;
+    int age;
+    String country;
+
+    Person () {
+        country = "RU";
+    }
+
+    Person (String name, int age) {
+        this.name = name;
+        this.age = age;
+        this();
+    }
+    public String getName(){
+        return name;
+    }
+    public int getAge(){
+        return age;
+    }
+    public String getCountry(){
+        return country;
+    }
+
+}
+
 public class Test1 {
     static int addAsStrings(int n1, int n2){
         String str = Integer.toString(n1) + Integer.toString(n2);
@@ -32,6 +59,8 @@ public class Test1 {
        return result;
 
        }
+
+
 
     }
     public  int sumArrayItems(int[] a){
