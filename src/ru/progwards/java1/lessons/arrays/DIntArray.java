@@ -7,10 +7,6 @@ public class DIntArray {
     public DIntArray(){
 
     }
-    public DIntArray(int [] i){
-        this();
-        this.i = i;
-    }
 
     public void add(int num) {
         int[] j = new int[i.length + 1];
@@ -48,7 +44,8 @@ public class DIntArray {
         int[] d = {17};
         int[] k = {12,14};
         int [] l = {34,45,54};
-        DIntArray aRR = new DIntArray(l);
+        DIntArray aRR = new DIntArray();
+        aRR.i = l;
         int i = aRR.at(0);
       //  System.out.println(i);
       //  System.out.println("Test");
