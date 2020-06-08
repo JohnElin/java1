@@ -25,6 +25,11 @@ public class Eratosthenes {
     public Eratosthenes(int N) {
         sieve = new boolean[N];
         Arrays.fill(sieve,true);
+        sift();
 
+    }
+
+    public static void main(String[] args) {
+       // Eratosthenes eRR = new Eratosthenes(30);
     }
 }

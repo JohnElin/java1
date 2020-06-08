@@ -2,13 +2,14 @@ package ru.progwards.java1.lessons.arrays;
 
 import java.util.Arrays;
 
-public class DIntArray {
-    private int[] i = new int[1];
-    public DIntArray(){
+    public class DIntArray {
+        private int[] i = new int[0];
+        public DIntArray(){
 
-    }
+        }
 
     public void add(int num) {
+        int len = i.length;
         int[] j = new int[i.length + 1];
         j = Arrays.copyOf(i, i.length + 1);
         i = j;
@@ -45,9 +46,14 @@ public class DIntArray {
         int[] k = {12,14};
         int [] l = {34,45,54};
         DIntArray aRR = new DIntArray();
-        aRR.i = l;
-        int i = aRR.at(0);
-      //  System.out.println(i);
-      //  System.out.println("Test");
+        //aRR.i = l;
+        int[] reT = {-88,50,38,74,-44,58,-73,-66};
+        for(int z:reT){
+        aRR.add(z);
+        }
+        int i1 = aRR.at(0);
+       System.out.println(Arrays.toString(aRR.i));
+        System.out.println("i1 = " + i1);
+       System.out.println("Test");
     }
 }
