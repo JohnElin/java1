@@ -1,7 +1,5 @@
 package ru.progwards.java1.lessons.test;
 
-import javax.swing.*;
-
 public class Test1 {
     static int addAsStrings(int n1, int n2){
         String str = Integer.toString(n1) + Integer.toString(n2);
@@ -34,15 +32,34 @@ public class Test1 {
        }
 
     }
-    public  int sumArrayItems(int[] a){
+    public static int sumArrayItems(int[] a){
         int res = 0;
         for (int re : a){
             res +=re;
         }
         return res;
     }
-    
 
+    enum Grade {VERYBAD,
+                BAD,
+                SATISFACTORILY,
+                GOOD,
+                EXCELLENT,
+                NOTDEFINED};
+    static Grade intToGrade(int grade){
+
+        switch (grade) {
+            case 1: return Grade.VERYBAD;
+            case 2: return Grade.BAD;
+            case 3: return Grade.SATISFACTORILY;
+            case 4: return Grade.GOOD;
+            case 5: return Grade.EXCELLENT;
+            default: return Grade.NOTDEFINED;
+
+        }
+
+
+    }
 
     public static void main(String[] args) {
         int []a = {2,5,7,8};
