@@ -5,7 +5,7 @@ import java.util.Map;
 public class Calculator {
 
     public static void main(String[] args) {
-        Integer i = 49;
+        Integer operandes = 0;
 
         // System.out.println("Ihi = "+iHi);
 //    Scanner s = new Scanner();
@@ -31,10 +31,26 @@ public class Calculator {
         s.put(80, "LXXX");
         s.put(90, "XC");
         s.put(100, "C");
-        String romeRes = romeOut(i,s);
-        System.out.println(romeRes);
-    }
+        String st = consoleGet();
+        //Подсчет количества операторов
+       char [] a   = st.toCharArray();
+        for (char ilt : a) {
+            if(ilt == "*".charAt(0)||ilt == "/".charAt(0)||ilt == "+".charAt(0)||ilt == "-".charAt(0)) ++operandes;
 
+        }
+        System.out.println("operandes = "+ operandes);
+        //String romeRes = romeOut(i,s);
+       // System.out.println(romeRes);
+
+    }
+    public static String consoleGet(){
+        System.out.println("Enter something:");
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        System.out.println("You are enter:"+s);
+        return s;
+
+    }
 
     public static String romeOut(Integer i, Map s){
         Integer iHi = 0, iLo = 0;
