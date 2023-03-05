@@ -1,11 +1,12 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.Map;
 
 public class Calculator {
 
-    public static void main(String[] args) {
-        Integer operandes = 0;
+    public static void main(String[] args) throws IOException {
+        int operandes = 0;
 
         // System.out.println("Ihi = "+iHi);
 //    Scanner s = new Scanner();
@@ -33,16 +34,27 @@ public class Calculator {
         s.put(100, "C");
         String st = consoleGet();
         //Подсчет количества операторов
-       char [] a   = st.toCharArray();
+        char[] a = st.toCharArray();
         for (char ilt : a) {
-            if(ilt == "*".charAt(0)||ilt == "/".charAt(0)||ilt == "+".charAt(0)||ilt == "-".charAt(0)) ++operandes;
+            if (ilt == '*' || ilt == '/' || ilt == '+' || ilt == '-') ++operandes;
+        }
+        // Выброс Exception если кол-во операторов != 1
+        if (operandes > 1) {
+            try {
+                throw new IOException();
+            } catch (IOException e) {
+                System.out.println("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+            }
+        } else if (operandes == 0) {
+            try {
+                throw new IOException();
+            } catch (IOException e) {
+                System.out.println("throws Exception //т.к. строка не является математической операцией");
+            }
 
         }
-        System.out.println("operandes = "+ operandes);
-        //String romeRes = romeOut(i,s);
-       // System.out.println(romeRes);
-
     }
+
     public static String consoleGet(){
         System.out.println("Enter something:");
         Scanner in = new Scanner(System.in);
@@ -53,7 +65,7 @@ public class Calculator {
     }
 
     public static String romeOut(Integer i, Map s){
-        Integer iHi = 0, iLo = 0;
+        int iHi = 0, iLo = 0;
         String out = "";
         iLo = (i%10);
         iHi = i - iLo;
