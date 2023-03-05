@@ -39,7 +39,7 @@ public class Calculator {
             if (ilt == '*' || ilt == '/' || ilt == '+' || ilt == '-') ++operandes;
         }
         // Выброс Exception если кол-во операторов != 1
-        if (operandes > 1) {
+        if (operandes > 2) {
             try {
                 throw new IOException();
             } catch (IOException e) {
