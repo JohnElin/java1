@@ -56,7 +56,7 @@ public class Calculator {
                 case ('-'):
                     operand = ilt;
                     ++operandes;
-                     break;
+                     break ;
             }
 
             // Выброс Exception если кол-во операторов != 1
