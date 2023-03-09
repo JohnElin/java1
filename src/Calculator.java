@@ -9,8 +9,7 @@ public class Calculator {
         int operandes = 0; // Кол-во операторов в принятой строке
         char operand = '?'; // Операнд арифм. операции
         int lSide = 0, rSide = 0; //lSide и rSide обозначают систему счисл. левой и правой части выражения, где 0 не определена, 1 арабская, 2 римская
-
-
+        int lSVal = 0, rSVal = 0;
 
         // System.out.println("Ihi = "+iHi);
 //    Scanner s = new Scanner();
@@ -56,32 +55,82 @@ public class Calculator {
                 case ('-'):
                     operand = ilt;
                     ++operandes;
-                     break;
-            }
-
-            // Выброс Exception если кол-во операторов != 1
-            if (operandes > 1) {
-                try {
-                    throw new IOException();
-                } catch (IOException e) {
-                    System.out.println("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
-                }
-            } else if (operandes == 0) {
-                try {
-                    throw new IOException();
-                } catch (IOException e) {
-                    System.out.println("throws Exception //т.к. строка не является математической операцией");
-                }
-
+                    break;
             }
         }
-    }
+        // Выброс Exception если кол-во операторов != 1
+        if (operandes > 1) {
+            try {
+                throw new IOException();
+            } catch (IOException e) {
+                System.out.println("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+            }
+        } else if (operandes == 0) {
+            try {
+                throw new IOException();
+            } catch (IOException e) {
+                System.out.println("throws Exception //т.к. строка не является математической операцией");
+            }
 
+        }
+        st = st.toUpperCase();
+        String[] stSplit = st.split("["+String.valueOf(operand)+"]");
+        stSplit[0] = stSplit[0].strip(); // Удаляем лишние пробелы в левой и правой части
+        stSplit[1] = stSplit[1].strip();
+        try {
+            lSVal = Integer.parseInt(stSplit[0]);
+            if (lSVal > 0) lSide = 1;
+        }
+        catch (NumberFormatException nfe) {
+
+        }
+        try {
+            rSVal = Integer.parseInt(stSplit[1]);
+            if (rSVal > 0) rSide = 1;
+        }
+        catch (NumberFormatException nfe) {
+
+        }
+        if (lSide == 0) { // Если в левой части выражения не найдены арабские цифры
+            for (Map.Entry<Integer, String> entry : s.entrySet()) {
+                if (entry.getValue().equals(stSplit[0])) {  // Проверяем наличие римских цифр от 1 до 10
+                    lSide = 2;
+                    lSVal = entry.getKey();
+                }
+            }
+        }
+            if (rSide == 0) {  // Если в правой части выражения не найдены арабские цифры
+                for (Map.Entry<Integer, String> entry1 : s.entrySet()) {
+                    if (entry1.getValue().equals(stSplit[1])) { // Проверяем наличие римских цифр от 1 до 10
+                        rSide = 2;
+                        rSVal = entry1.getKey();
+                    }
+                }
+            }
+
+        switch (operand) {
+            case ('*'):
+             if(lSide == 1) System.out.println(lSVal*rSVal);
+             else System.out.println(romeOut(lSVal*rSVal,s));
+                break;
+            case ('/'):
+
+                break;
+            case ('+'):
+
+                break;
+            case ('-'):
+
+                break;
+        }
+
+
+    }
     public static String consoleGet(){
         System.out.println("Enter something:");
         Scanner in = new Scanner(System.in);
         String s = in.nextLine();
-        System.out.println("You are enter:"+s);
+        //System.out.println("You are enter:"+s);
         return s;
 
     }
