@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Calculator {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
         int operandes = 0; // Кол-во операторов в принятой строке
         char operand = '?'; // Операнд арифм. операции
         int lSide = 0, rSide = 0; //lSide и rSide обозначают систему счисл. левой и правой части выражения, где 0 не определена, 1 арабская, 2 римская
@@ -63,13 +63,15 @@ public class Calculator {
             try {
                 throw new IOException();
             } catch (IOException e) {
-                System.out.println("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+                System.out.println("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два положительных операнда и один оператор (+, -, /, *)");
+            return;
             }
         } else if (operandes == 0) {
             try {
                 throw new IOException();
             } catch (IOException e) {
                 System.out.println("throws Exception //т.к. строка не является математической операцией");
+                return;
             }
 
         }
@@ -94,7 +96,7 @@ public class Calculator {
         if (lSide == 0) { // Если в левой части выражения не найдены арабские цифры
             for (Map.Entry<Integer, String> entry : s.entrySet()) {
                 if (entry.getValue().equals(stSplit[0])) {  // Проверяем наличие римских цифр от 1 до 10
-                    lSide = 2;
+                    lSide = 3;
                     lSVal = entry.getKey();
                 }
             }
@@ -102,11 +104,45 @@ public class Calculator {
             if (rSide == 0) {  // Если в правой части выражения не найдены арабские цифры
                 for (Map.Entry<Integer, String> entry1 : s.entrySet()) {
                     if (entry1.getValue().equals(stSplit[1])) { // Проверяем наличие римских цифр от 1 до 10
-                        rSide = 2;
+                        rSide = 3;
                         rSVal = entry1.getKey();
                     }
                 }
             }
+        if ((rSide+lSide)==2&&(rSVal<1||lSVal<1||rSVal>10||lSVal>10)) { // Проверка арабских цифр на соответствие условиям
+            try {
+                throw new IOException();
+            } catch (IOException e) {
+                System.out.println("throws Exception //т.к на вход допустимы только целые числа от 1 до 10");
+                return;
+            }
+        }
+        if((rSide+lSide)==0) {
+            try {
+                throw new IOException();
+            } catch (IOException e) {
+                System.out.println("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два положительных операнда и один оператор (+, -, /, *)");
+                return;
+            }
+        }
+
+        if((rSide+lSide)==4) {
+            try {
+                throw new IOException();
+            } catch (IOException e) {
+                System.out.println("throws Exception //т.к. используются одновременно разные системы счисления");
+                return;
+            }
+        }
+        if((rSide+lSide)==3||((rSide+lSide)==6&&(rSVal>10||lSVal>10))) {
+            try {
+                throw new IOException();
+            } catch (IOException e) {
+                System.out.println("throws Exception //т.к. допустимые числа в римской системе счисления не обнаружены");
+                return;
+            }
+        }
+
 
         switch (operand) {
             case ('*'):
@@ -114,14 +150,40 @@ public class Calculator {
              else System.out.println(romeOut(lSVal*rSVal,s));
                 break;
             case ('/'):
+                if(lSide == 1) System.out.println(lSVal/rSVal);
+                else{
+                    if(lSVal/rSVal<1) {
+                        try {
+                            throw new IOException();
+                        } catch (IOException e) {
+                            System.out.println("throws Exception //т.к. в римском счислении не используются числа менее 1");
+                            return;
+                        }
+
+                    }
+                    else System.out.println(romeOut(lSVal/rSVal,s));
+                }
 
                 break;
             case ('+'):
-
+                if(lSide == 1) System.out.println(lSVal+rSVal);
+                else System.out.println(romeOut(lSVal+rSVal,s));
                 break;
             case ('-'):
-
+                if(lSide == 1) System.out.println(lSVal-rSVal);
+                else
+                    if(lSVal-rSVal<1){
+                        try {
+                            throw new IOException();
+                        } catch (IOException e) {
+                            System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел");
+                            return;
+                        }
+                    }
+                    else System.out.println(romeOut(lSVal-rSVal,s));
                 break;
+
+
         }
 
 
