@@ -11,9 +11,7 @@ public class Calculator {
         int lSide = 0, rSide = 0; //lSide и rSide обозначают систему счисл. левой и правой части выражения, где 0 не определена, 1 арабская, 2 римская
         int lSVal = 0, rSVal = 0;
 
-        // System.out.println("Ihi = "+iHi);
-//    Scanner s = new Scanner();
-//    s.close();
+
         Map<Integer, String> s = new TreeMap<>();
         //  s.put(0, "null");
         s.put(1, "I");
@@ -40,22 +38,11 @@ public class Calculator {
         char[] a = st.toCharArray();
         for (char ilt : a) {
             switch (ilt) {
-                case ('*'):
+                case '*','/','+','-' -> {
                     operand = ilt;
                     ++operandes;
-                    break;
-                case ('/'):
-                    operand = ilt;
-                    ++operandes;
-                    break;
-                case ('+'):
-                    operand = ilt;
-                    ++operandes;
-                    break;
-                case ('-'):
-                    operand = ilt;
-                    ++operandes;
-                    break;
+                }
+
             }
         }
         // Выброс Exception если кол-во операторов != 1
@@ -76,7 +63,7 @@ public class Calculator {
 
         }
         st = st.toUpperCase();
-        String[] stSplit = st.split("["+String.valueOf(operand)+"]");
+        String[] stSplit = st.split("["+operand+"]");
         stSplit[0] = stSplit[0].strip(); // Удаляем лишние пробелы в левой и правой части
         stSplit[1] = stSplit[1].strip();
         try {
@@ -145,14 +132,14 @@ public class Calculator {
 
 
         switch (operand) {
-            case ('*'):
-             if(lSide == 1) System.out.println(lSVal*rSVal);
-             else System.out.println(romeOut(lSVal*rSVal,s));
-                break;
-            case ('/'):
-                if(lSide == 1) System.out.println(lSVal/rSVal);
-                else{
-                    if(lSVal/rSVal<1) {
+            case ('*') -> {
+                if (lSide == 1) System.out.println(lSVal * rSVal);
+                else System.out.println(romeOut(lSVal * rSVal, s));
+            }
+            case ('/') -> {
+                if (lSide == 1) System.out.println(lSVal / rSVal);
+                else {
+                    if (lSVal / rSVal < 1) {
                         try {
                             throw new IOException();
                         } catch (IOException e) {
@@ -160,30 +147,24 @@ public class Calculator {
                             return;
                         }
 
-                    }
-                    else System.out.println(romeOut(lSVal/rSVal,s));
+                    } else System.out.println(romeOut(lSVal / rSVal, s));
                 }
-
-                break;
-            case ('+'):
-                if(lSide == 1) System.out.println(lSVal+rSVal);
-                else System.out.println(romeOut(lSVal+rSVal,s));
-                break;
-            case ('-'):
-                if(lSide == 1) System.out.println(lSVal-rSVal);
-                else
-                    if(lSVal-rSVal<1){
-                        try {
-                            throw new IOException();
-                        } catch (IOException e) {
-                            System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел");
-                            return;
-                        }
+            }
+            case ('+') -> {
+                if (lSide == 1) System.out.println(lSVal + rSVal);
+                else System.out.println(romeOut(lSVal + rSVal, s));
+            }
+            case ('-') -> {
+                if (lSide == 1) System.out.println(lSVal - rSVal);
+                else if (lSVal - rSVal < 1) {
+                    try {
+                        throw new IOException();
+                    } catch (IOException e) {
+                        System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел");
+                        return;
                     }
-                    else System.out.println(romeOut(lSVal-rSVal,s));
-                break;
-
-
+                } else System.out.println(romeOut(lSVal - rSVal, s));
+            }
         }
 
 
@@ -198,10 +179,9 @@ public class Calculator {
     }
 
     public static String romeOut(Integer i, Map s){
-        int iHi = 0, iLo = 0;
         String out = "";
-        iLo = (i%10);
-        iHi = i - iLo;
+        int iLo = (i%10);
+        int iHi = i - iLo;
         if( iHi>0 & iLo>0) {
             return s.get(iHi).toString()+s.get(iLo).toString();
         }
